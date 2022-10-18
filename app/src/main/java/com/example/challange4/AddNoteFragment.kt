@@ -12,7 +12,6 @@ import com.example.challange4.databinding.FragmentAddNoteBinding
 import com.example.challange4.room.DataNote
 import com.example.challange4.room.NoteDatabase
 import com.example.challange4.room.NoteViewModel
-import kotlinx.android.synthetic.main.item_note.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
 

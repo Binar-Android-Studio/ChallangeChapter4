@@ -27,7 +27,7 @@ class HomeFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentHomeBinding.inflate(inflater,container,false)
-        viewModel.getNote().observe(viewLifecycleOwner){ listNote ->
+        viewModel.getDataNotes().observe(viewLifecycleOwner){ listNote ->
             binding.rvNote.layoutManager = LinearLayoutManager(requireContext())
             binding.rvNote.adapter = NoteAdapter(requireContext(),listNote)
         }

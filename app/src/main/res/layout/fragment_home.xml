@@ -48,6 +48,7 @@
                     android:id="@+id/rvNote"/>
             </RelativeLayout>
         </ScrollView>
+
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/btnAddNote"
             android:layout_width="wrap_content"
@@ -56,8 +57,8 @@
             android:layout_alignParentBottom="true"
             android:layout_marginRight="30dp"
             android:layout_marginBottom="30dp"
-            android:src="@drawable/ic_add"
-            android:backgroundTint="#733572"/>
+            android:backgroundTint="#733572"
+            android:src="@drawable/ic_add" />
     </RelativeLayout>
 
 </FrameLayout>

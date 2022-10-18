@@ -3,23 +3,36 @@ package com.example.challange4.room
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.launch
 
 class NoteViewModel (application : Application) : AndroidViewModel(application){
 
-    private val repo : NoteRepository
+    private val noteRepo : NoteRepository
 
     init {
-        val dao = NoteDatabase.getInstance(application)!!.noteDao()
-        repo = NoteRepository(dao)
+        val noteDao = NoteDatabase.getInstance(application)?.noteDao()
+        noteRepo = NoteRepository(noteDao!!)
     }
 
-    fun getNote(): LiveData<List<DataNote>> = repo.getAllNote()
+    fun getDataNotes() : LiveData<List<DataNote>> = noteRepo.getAllDataNotes()
 
-    fun addNote(note : DataNote) {
-        repo.insertNote(note)
+    fun addNote(notes: DataNote){
+        viewModelScope.launch {
+            noteRepo.addNote(notes)
+        }
     }
-    fun updateNote(note : DataNote) {
-        repo.updateNote(note)
+
+    fun editNote(notes: DataNote){
+        viewModelScope.launch {
+            noteRepo.editNote(notes)
+        }
+    }
+
+    fun deleteNote(notes: DataNote){
+        viewModelScope.launch {
+            noteRepo.deleteNote(notes)
+        }
     }
 
 }

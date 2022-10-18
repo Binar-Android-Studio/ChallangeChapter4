@@ -4,16 +4,15 @@ import androidx.lifecycle.LiveData
 
 class NoteRepository (val data: NoteDAO) {
 
-    fun getAllNote(): LiveData<List<DataNote>>{
+    fun getAllDataNotes() : LiveData<List<DataNote>>{
         return data.getDataNote()
     }
 
-    fun insertNote(note : DataNote){
-        data.insertNote(note)
-    }
+    suspend fun addNote(notes: DataNote) = data.insertNote(notes)
 
-    fun updateNote(note : DataNote){
-        data.updateNote(note)
-    }
+    suspend fun editNote(notes: DataNote) = data.editNote(notes)
+
+    suspend fun deleteNote(notes: DataNote) = data.deleteNote(notes)
+
 
 }

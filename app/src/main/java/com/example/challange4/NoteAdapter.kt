@@ -39,17 +39,12 @@ class NoteAdapter(var requireContext: Context ,var  listNote : List<DataNote>): 
             DBNote = NoteDatabase.getInstance(it.context)
             GlobalScope.async {
                 val del = DBNote?.noteDao()?.deleteNote(listNote[position])
-                if ( del != 0){
-                    Toast.makeText(it.context, "Data ${listNote[position].id} Data Berhasil di Hapus", Toast.LENGTH_SHORT).show()
-                }else{
-                    Toast.makeText(it.context, "Data ${listNote[position].id} Data Gagal di Hapus ", Toast.LENGTH_SHORT).show()
-                }
             }
         }
 
         holder.binding.edit.setOnClickListener{
             var bund = Bundle()
-            bund.putInt("id", listNote[position].id)
+            bund.putString("id", listNote[position].id.toString())
             bund.putString("content", listNote[position].content)
             bund.putString("title", listNote[position].title)
             Navigation.findNavController(it).navigate(R.id.action_homeFragment_to_editFragment, bund)

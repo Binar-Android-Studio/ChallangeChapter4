@@ -13,19 +13,19 @@ abstract class NoteDatabase : RoomDatabase () {
 
     companion object{
         @Volatile
-        private  var INSTANCE : NoteDatabase? = null
+        private var INSTANCE : NoteDatabase? = null
 
-        fun getInstance(context: Context):NoteDatabase?{
-            if(INSTANCE == null){
-                synchronized(NoteDatabase::class){
-                    INSTANCE = Room.databaseBuilder(context.applicationContext,NoteDatabase::class.java,"Note.db").build()
+        fun getInstance(context : Context): NoteDatabase? {
+            if (INSTANCE == null){
+                synchronized(this){
+                    INSTANCE = Room.databaseBuilder(
+                        context.applicationContext,
+                        NoteDatabase::class.java,
+                        "note.db"
+                    ).build()
                 }
             }
             return INSTANCE
-        }
-
-        fun destroyInstance(){
-            INSTANCE = null
         }
     }
 }
